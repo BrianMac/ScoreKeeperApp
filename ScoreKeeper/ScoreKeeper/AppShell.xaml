@@ -23,9 +23,12 @@
 
     <!-- Display a bottom tab bar containing two tabs -->
     <TabBar>
-        <ShellContent Title="Notes"
+        <ShellContent Title="Players"
                       Icon="icon_feed.png"
                       ContentTemplate="{DataTemplate views:PlayersPage}" />
+        <ShellContent Title="Game Setup"
+                      Icon="icon_about.png"
+                      ContentTemplate="{DataTemplate views:GameSetupPage}" />
         <ShellContent Title="Dice"
                       Icon="icon_about.png"
                       ContentTemplate="{DataTemplate views:DicePage}" />
