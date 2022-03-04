@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ScoreKeeper.Views.DicePage"
+             Title="Roll Some Dice!">
+    <!-- Layout children in two rows -->
+    <Grid RowDefinitions="Auto,*">
+        <Image Source="xamarin_logo.png"
+               BackgroundColor="{StaticResource AppPrimaryColor}"
+               Opacity="0.85"
+               VerticalOptions="Center"
+               HeightRequest="64" />
+        <!-- Layout children vertically -->
+        <Image Source="dice_roll.png"
+               VerticalOptions="Center"
+               HeightRequest="100" />
+        <StackLayout Grid.Row="1"
+                     Margin="{StaticResource PageMargin}"
+                     Spacing="20">
+            <Label FontSize="22">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="Brian MacDonald"
+                                  FontAttributes="Bold"
+                                  FontSize="22" TextColor="#555555" />
+                            <Span Text=" v1.0" TextColor="#878787" />
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label FontSize="16">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="Check out my " TextColor="#555555"  />
+                            <Span Text="Github " 
+                                 FontAttributes="Bold"
+                                  FontSize="17"
+                                  TextColor="#24292f"/>
+                            <Span Text="repository to see some of my latest personal projects and/or give me a follow!" TextColor="#555555"  />
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Button Text="Github"
+                    Button.TextColor="White"
+                    BackgroundColor="#24292f"
+                    Clicked="OnButtonClicked" Margin="0,0,0,10" />
+            <Label FontSize="16">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="Visit my " TextColor="#555555" />
+                            <Span Text="LinkedIn " 
+                                 FontAttributes="Bold"
+                                  FontSize="17"
+                                  TextColor="#0072b1"/>
+                            <Span Text="profile to review my skills and experience. And please feel free to reach out and say hello, I love to network and collaborate!"  TextColor="#555555"  />
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Button Text="LinkedIn"
+                    Button.TextColor="White"
+                    BackgroundColor="#0072b1"
+                    Clicked="OnButtonClicked" />
+            <Label  HorizontalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Please touch " TextColor="#555555"  />
+                        <Span Text="here"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="HyperLinkTapped" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                        <Span Text=" to view the privacy policy." TextColor="#555555"  />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+        <StackLayout Grid.Row="3"
+                     Margin="{StaticResource PageMargin}"
+                     Spacing="20">
+            <Button Text="Roll the Dice"
+                    Button.TextColor="White"
+                    BackgroundColor="#0072b1"
+                    Clicked="ShakeTest" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
