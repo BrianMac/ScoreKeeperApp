@@ -45,7 +45,7 @@ namespace ScoreKeeper.Views
             player.Date = DateTime.UtcNow;
             if (!string.IsNullOrWhiteSpace(player.Text))
             {
-                await App.Database.SaveNoteAsync(player);
+                await App.Database.SavePlayerAsync(player);
             }
 
             // Navigate backwards

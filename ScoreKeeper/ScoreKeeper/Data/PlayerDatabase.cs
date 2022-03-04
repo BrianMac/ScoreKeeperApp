@@ -15,7 +15,7 @@ namespace ScoreKeeper.Data
             database.CreateTableAsync<Player>().Wait();
         }
 
-        public Task<List<Player>> GetNotesAsync()
+        public Task<List<Player>> GetPlayersAsync()
         {
             //Get all players.
             return database.Table<Player>().ToListAsync();
@@ -29,7 +29,7 @@ namespace ScoreKeeper.Data
                             .FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveNoteAsync(Player player)
+        public Task<int> SavePlayerAsync(Player player)
         {
             if (player.ID != 0)
             {

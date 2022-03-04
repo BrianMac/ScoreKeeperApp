@@ -20,7 +20,7 @@ namespace ScoreKeeper.Views
 
             // Retrieve all the players from the database, and set them as the
             // data source for the CollectionView.
-            collectionView.ItemsSource = await App.Database.GetNotesAsync();
+            collectionView.ItemsSource = await App.Database.GetPlayersAsync();
         }
 
         async void OnAddClicked(object sender, EventArgs e)
