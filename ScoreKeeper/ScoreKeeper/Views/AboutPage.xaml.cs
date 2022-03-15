@@ -14,7 +14,8 @@ namespace ScoreKeeper.Views
 
         private async void HyperLinkTapped(object sender, EventArgs e)
         {
-            await Browser.OpenAsync("http://return-true.net", BrowserLaunchMode.SystemPreferred);
+            await Navigation.PushAsync(new PrivacyPolicy());
+            //await Browser.OpenAsync("http://return-true.net", BrowserLaunchMode.SystemPreferred);
         }
 
         public async void ShowPopup(string msg)
@@ -26,9 +27,8 @@ namespace ScoreKeeper.Views
         {
             if((sender as Button).Text.ToUpper() == "LINKEDIN")
             {
-                ShowPopup("Join the Loafer Clan!");
                 // Launch the specified URL in the system browser.
-                // await Browser.OpenAsync("https://www.linkedin.com/in/bjmacdonald/", BrowserLaunchMode.SystemPreferred);
+                await Browser.OpenAsync("https://www.linkedin.com/in/bjmacdonald/", BrowserLaunchMode.SystemPreferred);
             } else
             {
                 // Launch the specified URL in the system browser.

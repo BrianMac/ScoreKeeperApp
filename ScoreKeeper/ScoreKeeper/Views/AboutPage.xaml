@@ -2,90 +2,78 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ScoreKeeper.Views.AboutPage"
-             Title="About Me:">
-    <!-- Layout children in two rows -->
-    <ScrollView>
-        <Grid RowDefinitions="Auto,*">
-            <!-- Layout children vertically -->
-            <StackLayout Grid.Row="1"
+             Title="About Me:"
+             BackgroundColor="#3e1b5e">
+    <StackLayout Grid.Row="1"
                          Margin="{StaticResource PageMargin}"
                          Spacing="20">
-                <Label FontSize="22" HorizontalOptions="Center">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="Brian MacDonald "
-                                      FontAttributes="Bold"
-                                      FontSize="22" TextColor="#ffffff" />
-                                <Span Text="  ▸ "
-                                      FontAttributes="Bold"
-                                      FontSize="22" TextColor="#ffffff" />
-                                <Span Text="  Software Engineer" FontSize="18" TextColor="#e6e6e6" />
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Label FontSize="14" Opacity="0.8" Margin="10,0,5,30" VerticalOptions="StartAndExpand" >
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="Enthusiastic and proactive Software Engineer with experience in production art and design. Creative problem-solver who thrives in a dynamic environment and enjoys collaboration. A lifelong learner with strong communication skills and work ethic."
+        <Label FontSize="22" HorizontalOptions="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Brian MacDonald " TextColor="#ffffff" />
+                        <Span Text=" ▸  " FontAttributes="Bold" TextColor="#ffffff" />
+                        <Span Text="Software Engineer" FontSize="18" TextColor="#e6e6e6" />
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Label FontSize="14" Opacity="0.8" Margin="10,0,5,30" VerticalOptions="StartAndExpand" >
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Enthusiastic and proactive Software Engineer with experience in production art and design. Creative problem-solver who thrives in a dynamic environment and enjoys collaboration. A lifelong learner with strong communication skills and work ethic."
                                       TextColor="#f0f0f0" />
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Label FontSize="16" Opacity="0.8">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="Check out my " TextColor="#f0f0f0"  />
-                                <Span Text="GitHub " FontAttributes="Bold" FontSize="17" TextColor="#24292f"/>
-                                <Span Text="repository to see some of my latest personal projects and/or give me a follow!" TextColor="#f0f0f0"  />
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Button Text="GitHub"
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Label FontSize="14" Opacity="0.8">
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Check out my" TextColor="#f0f0f0"  />
+                        <Span Text=" GitHub " FontAttributes="Bold" FontSize="17" TextColor="#ffffff"/>
+                        <Span Text="repository to see some of my latest personal projects and/or give me a follow!" TextColor="#f0f0f0"  />
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Button Text="GitHub"
                         TextTransform="None"
                         Button.TextColor="White"
                         BackgroundColor="#24292f"
                         Clicked="OnButtonClicked" Margin="0,0,0,10" />
-                <Label FontSize="16"  Opacity="0.8" />
-                <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="Visit my " TextColor="#f0f0f0" />
-                                <Span Text="LinkedIn " 
-                                     FontAttributes="Bold"
-                                      FontSize="17"
-                                      TextColor="#0072b1"/>
-                                <Span Text="profile to review my skills and experience. And please feel free to reach out and say hello, I love to network and collaborate!"  TextColor="#555555"  />
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Button Text="LinkedIn"
+        <Label FontSize="14"  Opacity="0.8">
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Visit my " TextColor="#f0f0f0" />
+                        <Span Text="LinkedIn" FontAttributes="Bold" FontSize="17" TextColor="#21b0ff"/>
+                        <Span Text=" profile to review my skills and experience. And please feel free to reach out and say hello, I love to network and collaborate!"  TextColor="#f0f0f0"  />
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Button Text="LinkedIn"
                         TextTransform="None"
                         Button.TextColor="White"
                         BackgroundColor="#0072b1"
                         Clicked="OnButtonClicked" />
-                <Label  HorizontalTextAlignment="Center">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Please touch " TextColor="#555555"  />
-                            <Span Text="here"
-                      TextColor="Blue"
+        <Label  HorizontalTextAlignment="Center" Opacity="0.8" FontSize="12">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Please tap  " TextColor="#f0f0f0"  />
+                    <Span Text="here"
+                      TextColor="#ffa600"
                       TextDecorations="Underline">
-                                <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="HyperLinkTapped" />
-                                </Span.GestureRecognizers>
-                            </Span>
-                            <Span Text=" to view the privacy policy." TextColor="#555555"  />
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-            </StackLayout>
-        </Grid>
-    </ScrollView>
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="HyperLinkTapped" />
+                        </Span.GestureRecognizers>
+                    </Span>
+                    <Span Text="  to view the privacy policy." TextColor="#f0f0f0"  />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </StackLayout>
 </ContentPage>
