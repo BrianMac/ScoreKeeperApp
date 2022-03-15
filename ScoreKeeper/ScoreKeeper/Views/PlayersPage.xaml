@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ScoreKeeper.Views.PlayersPage"
-             Title="Players">
+             Title="Current Players">
 
     <ContentPage.Resources>
         <!-- Define a visual state for the Selected state of the CollectionView -->
@@ -25,7 +25,7 @@
 
     <!-- Add an item to the toolbar -->
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add"
+        <ToolbarItem Text="+ Add Player"
                      Clicked="OnAddClicked" />
     </ContentPage.ToolbarItems>
 
@@ -36,17 +36,24 @@
                     SelectionChanged="OnSelectionChanged">
         <CollectionView.ItemsLayout>
             <LinearItemsLayout Orientation="Vertical"
-                               ItemSpacing="10" />
+                               ItemSpacing="20" />
         </CollectionView.ItemsLayout>
         <!-- Define the appearance of each item in the list -->
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout>
                     <Label Text="{Binding Text}"
+                           TextColor="{StaticResource PlayerNameColor}"
                            FontSize="Medium" />
                     <Label Text="{Binding Date}"
                            TextColor="{StaticResource TertiaryColor}"
                            FontSize="Small" />
+                    <Label Text="Add Points"
+                           TextColor="{StaticResource PlayerNameColor}"
+                           FontSize="Large" 
+                           BackgroundColor="Goldenrod"
+                           WidthRequest="200"
+                           HeightRequest="100"/>
                 </StackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>

@@ -9,11 +9,13 @@
         <Thickness x:Key="PageMargin">20</Thickness>
 
         <!-- Colors -->
-        <Color x:Key="AppPrimaryColor">#1976D2</Color>
-        <Color x:Key="AppBackgroundColor">AliceBlue</Color>
-        <Color x:Key="PrimaryColor">Black</Color>
-        <Color x:Key="SecondaryColor">White</Color>
-        <Color x:Key="TertiaryColor">Silver</Color>
+        <Color x:Key="AppPrimaryColor">#263866</Color>
+        <Color x:Key="AppBackgroundColor">DarkMagenta</Color>
+        <Color x:Key="PrimaryColor">#691051</Color>
+        <Color x:Key="SecondaryColor">#00ffb3</Color>
+        <Color x:Key="TertiaryColor">#66a9ba</Color>
+        <Color x:Key="PlayerNameColor">#ba118c</Color>
+        
 
         <!-- Implicit styles -->
         <Style TargetType="ContentPage"

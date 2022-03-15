@@ -7,7 +7,6 @@ namespace ScoreKeeper.Views
 {
     public partial class AboutPage : ContentPage
     {
-        DetectShake shake = new DetectShake();
 
         public AboutPage()
         {
@@ -17,12 +16,6 @@ namespace ScoreKeeper.Views
         private async void HyperLinkTapped(object sender, EventArgs e)
         {
             await Browser.OpenAsync("http://return-true.net", BrowserLaunchMode.SystemPreferred);
-        }
-
-        public void ShakeTest(object sender, EventArgs e)
-        {
-            shake.ToggleAccelerometer();
-            //ShowPopup("Message");
         }
 
         public async void ShowPopup(string msg)

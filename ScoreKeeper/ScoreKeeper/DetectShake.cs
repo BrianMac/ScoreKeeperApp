@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -10,7 +7,8 @@ namespace ScoreKeeper.Views
     public class DetectShake
     {
         // Set speed delay for monitoring changes.
-        SensorSpeed speed = SensorSpeed.Game;
+        readonly SensorSpeed speed = SensorSpeed.Game;
+        DicePage DP = new DicePage();
 
         public DetectShake()
         {
@@ -21,18 +19,26 @@ namespace ScoreKeeper.Views
         async void Accelerometer_ShakeDetected(object sender, EventArgs e)
         {
             // Process shake event
-            await App.Current.MainPage.DisplayAlert("Alert", "Shaken!", "OK");
-        }
+            //ShowPopup("Test");            
+            DP.RollDice();
 
+        }
 
         public void ToggleAccelerometer()
         {
             try
             {
                 if (Accelerometer.IsMonitoring)
+                {
                     Accelerometer.Stop();
+                    ShowPopup("Shake detection is off");
+                }
                 else
+                {
                     Accelerometer.Start(speed);
+                    ShowPopup("Shake detection is on");
+                }
+                    
             }
             catch (FeatureNotSupportedException fnsEx)
             {
@@ -44,9 +50,9 @@ namespace ScoreKeeper.Views
             }
         }
 
-        public async void ShowPopup(string msg)
+        public void ShowPopup(string msg)
         {
-            await App.Current.MainPage.DisplayAlert("Alert:", msg, "Dismiss");
+            App.Current.MainPage.DisplayAlert("Alert:", msg, "Dismiss");
         }
     }
 }

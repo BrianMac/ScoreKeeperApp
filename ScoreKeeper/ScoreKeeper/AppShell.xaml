@@ -30,7 +30,7 @@
                       Icon="icon_about.png"
                       ContentTemplate="{DataTemplate views:GameSetupPage}" />
         <ShellContent Title="Dice"
-                      Icon="icon_about.png"
+                      Icon="icon_dice.png"
                       ContentTemplate="{DataTemplate views:DicePage}" />
         <ShellContent Title="About"
                       Icon="icon_about.png"

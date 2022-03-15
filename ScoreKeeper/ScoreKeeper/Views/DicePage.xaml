@@ -2,92 +2,348 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ScoreKeeper.Views.DicePage"
-             Title="Roll Some Dice!">
-    <!-- Layout children in two rows -->
-    <Grid RowDefinitions="Auto,*">
-        <Image Source="xamarin_logo.png"
-               BackgroundColor="{StaticResource AppPrimaryColor}"
-               Opacity="0.85"
-               VerticalOptions="Center"
-               HeightRequest="64" />
-        <!-- Layout children vertically -->
-        <Image Source="dice_roll.png"
-               VerticalOptions="Center"
-               HeightRequest="100" />
-        <StackLayout Grid.Row="1"
-                     Margin="{StaticResource PageMargin}"
-                     Spacing="20">
-            <Label FontSize="22">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <FormattedString.Spans>
-                            <Span Text="Brian MacDonald"
-                                  FontAttributes="Bold"
-                                  FontSize="22" TextColor="#555555" />
-                            <Span Text=" v1.0" TextColor="#878787" />
-                        </FormattedString.Spans>
-                    </FormattedString>
-                </Label.FormattedText>
+             Title="Dice Roll">
+    <StackLayout>
+        <ScrollView x:Name="ScrVw" Padding="5,5,5,0" BackgroundColor="DarkMagenta" >
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*,Auto">
+                <Frame HasShadow="false" CornerRadius="6" Grid.ColumnSpan="3" Grid.RowSpan="10" Margin="0,0,0,5">
+                    <Frame.Background>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                            <GradientStop Color="#ff006a" Offset="1.0"/>
+                            <GradientStop Color="#ff8800" Offset="1.0"/>
+                            <GradientStop Color="#ff9d00" Offset="1.0"/>
+                            <GradientStop Color="#ff8800" Offset="1.0"/>
+                            <GradientStop Color="#ff006a" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                </Frame>
+                <!-- First Row D100 -->
+                <Label Text=" "
+                TextColor="#4d7273"
+                BackgroundColor="#4d7273"
+                Margin="20,15,20,0"
+                Grid.Row="0" Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="200"
+                HeightRequest="48"/>
+                <Button Text="-"
+                x:Name="D100minus" ClassId="D100MinusClass"
+                Margin="20,15,0,0"
+                Padding="0,0,0,2"
+                Button.TextColor="White"
+                FontSize="30"
+                BackgroundColor="#4d7273"
+                Clicked="IncrementDice" 
+                Grid.Row="0" Grid.Column="0"
+                WidthRequest="90"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                HeightRequest="48"/>
+                <Button Text="+"
+                x:Name="D100plus" ClassId="D100PlusClass"
+                Margin="0,15,20,0"
+                FontSize="20"
+                Button.TextColor="White"
+                BackgroundColor="#4d7273"
+                Clicked="IncrementDice" 
+                Grid.Row="0" Grid.Column="2"
+                WidthRequest="90"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                HeightRequest="48"/>
+                <Image x:Name="D100" Source="d_100.png"            
+                Margin="0,10,0,0"
+                HeightRequest="75"
+                Grid.Row="0" Grid.Column="1"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                IsVisible="true" />
+                <!-- Second Row D100 label -->
+                <Label x:Name="D100lbl" Text=""
+                Margin="0,-10,0,0"
+                TextColor="#363636"
+                FontSize="16"
+                FontAttributes="Bold"
+                Grid.Row="1" Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                HeightRequest="23" 
+                IsVisible="false"/>
+                <!-- Third Row D20 -->
+                <Label Text=" "
+                TextColor="#b31b04"
+                BackgroundColor="#b31b04"
+                Margin="20,5,20,0"
+                Grid.Row="2" Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="200"
+                HeightRequest="48"/>
+                <Button Text="-"
+                x:Name="D20minus" ClassId="D20MinusClass"
+                Padding="0,0,0,2"
+                Margin="20,5,0,0"
+                Button.TextColor="White"
+                FontSize="30"
+                BackgroundColor="#b31b04"
+                Clicked="IncrementDice" 
+                Grid.Row="2" Grid.Column="0"
+                WidthRequest="90"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                HeightRequest="48" />
+                <Button Text="+"
+                x:Name="D20plus" ClassId="D20PlusClass"
+                Margin="0,5,20,0"
+                FontSize="20"
+                Button.TextColor="White"
+                BackgroundColor="#b31b04"
+                Clicked="IncrementDice" 
+                Grid.Row="2" Grid.Column="2"
+                WidthRequest="90"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                HeightRequest="48"/>
+                <Image x:Name="D20" Source="d_20.png"            
+                Margin="0,0,0,0"
+                HeightRequest="75"
+                Grid.Row="2" Grid.Column="1"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                IsVisible="true" />
+                <!-- Fourth Row D20 label -->
+                <Label x:Name="D20lbl" Text=""
+                Margin="0,-10,0,0"
+                TextColor="#363636"
+                FontSize="16"
+                FontAttributes="Bold"
+                Grid.Row="3" Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                HeightRequest="23" 
+                IsVisible="false"/>
+                <!-- Fifth Row D6 
+                            Button.TextColor="#ffb330"
+            BackgroundColor="#0072b1"-->
+                <Label Text=" "
+                TextColor="#0072b1"
+                BackgroundColor="#0072b1"
+                Margin="20,0,20,0"
+                Grid.Row="4" Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="200"
+                HeightRequest="48"/>              
+                <Button Text="-"
+                x:Name="D6minus" ClassId="D6MinusClass"
+                Padding="0,0,0,2"
+                FontSize="30"
+                Button.TextColor="#ffb330"
+                BackgroundColor="#0072b1"
+                Clicked="IncrementDice" 
+                Grid.Row="4" Grid.Column="0"
+                WidthRequest="90"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                HeightRequest="48"/>
+                <Button Text="+"
+                x:Name="D6plus" ClassId="D6PlusClass"
+                Margin="0,0,20,0"
+                FontSize="20"
+                Button.TextColor="#ffb330"
+                BackgroundColor="#0072b1"
+                Clicked="IncrementDice" 
+                Grid.Row="4" Grid.Column="2"
+                WidthRequest="90"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                HeightRequest="48"/>
+                <Image x:Name="D6" Source="d_6.png"
+                Margin="0,-5,0,0"
+                HeightRequest="75"
+                Grid.Row="4" Grid.Column="1"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                IsVisible="true" />
+                <!-- Sixth Row D6 label -->                
+                <Label x:Name="D6lbl" Text=""
+                Margin="0,-10,0,0"
+                TextColor="#363636"
+                FontSize="16"
+                FontAttributes="Bold"
+                Grid.Row="5" Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                HeightRequest="23"
+                IsVisible="false" />
+                <!-- Seventh Row D4 -->
+                <Label Text=" "
+                TextColor="#17782d"
+                BackgroundColor="#17782d"
+                Margin="20,0,20,0"
+                Grid.Row="6" Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="200"
+                HeightRequest="48"/>
+                <Button Text="-"
+                x:Name="D4minus" ClassId="D4MinusClass"
+                Padding="0,0,0,2"
+                FontSize="30"
+                Button.TextColor="#ffffff"
+                BackgroundColor="#17782d"
+                Clicked="IncrementDice" 
+                Grid.Row="6" Grid.Column="0"
+                WidthRequest="90"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                HeightRequest="48"/>
+                <Button Text="+"
+                x:Name="D4plus" ClassId="D4PlusClass"
+                FontSize="20"
+                Button.TextColor="#ffffff"
+                BackgroundColor="#17782d"
+                Clicked="IncrementDice" 
+                Grid.Row="6" Grid.Column="2"
+                WidthRequest="90"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                HeightRequest="48"/>
+                <Image x:Name="D4" Source="d_4.png"
+                Margin="0,-5,0,0"
+                HeightRequest="75"
+                Grid.Row="6" Grid.Column="1"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                IsVisible="true" />
+                <!-- Eighth Row -->
+                <Label x:Name="D4lbl" Text=" "
+                Margin="0,-10,0,0"
+                TextColor="#363636"
+                FontSize="16"
+                FontAttributes="Bold"
+                Grid.Row="7" Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                HeightRequest="23"
+                IsVisible="false" />
+                <!-- Ninth Row D4 -->
+                <Label Text=" "
+                TextColor="#d1d1d1"
+                BackgroundColor="#d1d1d1"
+                Margin="20,0,20,0"
+                Grid.Row="8" Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="200"
+                HeightRequest="48"/>
+                <Button Text="-"
+                x:Name="Dxminus" ClassId="DxMinusClass"
+                Padding="0,0,0,2"
+                FontSize="30"
+                Button.TextColor="#000000"
+                BackgroundColor="#d1d1d1"
+                Clicked="IncrementDice" 
+                Grid.Row="8" Grid.Column="0"
+                WidthRequest="90"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                HeightRequest="48" />
+                <Button Text="+"
+                x:Name="Dxplus" ClassId="DxPlusClass"
+                FontSize="20"
+                Button.TextColor="#000000"
+                BackgroundColor="#d1d1d1"
+                Clicked="IncrementDice" 
+                Grid.Row="8" Grid.Column="2"
+                WidthRequest="90"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                HeightRequest="48"/>
+                <ImageButton Source="d_x.png" x:Name="Dx"
+                Margin="0,-5,0,0"
+                BackgroundColor="Transparent"
+                HeightRequest="75"
+                Grid.Row="8" Grid.Column="1"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                IsVisible="true"
+                Clicked="SetCustomDiceRange"/>
+                <!-- Tenth Row -->
+                <Label x:Name="Dxlbl" Text=""
+                Margin="0,-10,0,25"
+                TextColor="#363636"
+                FontSize="16"
+                FontAttributes="Bold"
+                Grid.Row="9" Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                HeightRequest="23"
+                IsVisible="false" />
+            </Grid>
+        </ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto,*,Auto,Auto"  ColumnDefinitions="Auto,*,20,100" Padding="10,5,10,-20">
+        <!-- Results Section -->
+            <!-- Results Header -->
+            <Label Text=" RESULTS:" FontSize="20" TextColor="#38154a" FontAttributes="Bold" Opacity="0.8" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Start" HorizontalOptions="Start" />
+            <Button x:Name="ClearResultsBtn" Opacity="1" Text="Clear" FontSize="13" Padding="0" HeightRequest="36" Button.TextColor="White" BackgroundColor="#0072b1" Margin="0,0,0,0" Clicked="ClearResults" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" VerticalOptions="Start" HorizontalOptions="End"/>
+            <!-- D100 Results Row -->
+            <Label x:Name="ResultsD100A" FontSize="14" FontAttributes="Bold" Text="" TextColor="#ffffff" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="End" IsVisible="False"/>
+            <Label x:Name="ResultsD100B" Text="" FontSize="11" FontAttributes="Bold" TextColor="#e0e0e0" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False"/>
+            <Label x:Name="ResultsD100Equals" Text="=" Opacity="0.5" FontSize="20" TextColor="#e0e0e0" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" IsVisible="False"/>
+            <Label x:Name="ResultsD100C" FontSize="18" TextColor="#ffffff" FontAttributes="Bold" Text="" Grid.Row="1" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False"/>
+            <!-- D20 Results Row -->
+            <Label x:Name="ResultsD20A" FontSize="14" FontAttributes="Bold" Text="" TextColor="#ffffff" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="End" IsVisible="False"/>
+            <Label x:Name="ResultsD20B" Text="" FontSize="11" FontAttributes="Bold" TextColor="#e0e0e0" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False"/>
+            <Label x:Name="ResultsD20Equals" Text="=" Opacity="0.5" FontSize="20" TextColor="#e0e0e0" Grid.Row="2" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" IsVisible="False"/>
+            <Label x:Name="ResultsD20C" FontSize="16" TextColor="#ffffff" FontAttributes="Bold" Text="" Grid.Row="2" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False"/>
+            <!-- D6 Results Row -->
+            <Label x:Name="ResultsD6A" FontSize="14" FontAttributes="Bold" Text="" TextColor="#ffffff" Grid.Row="3" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="End" IsVisible="False"/>
+            <Label x:Name="ResultsD6B" Text="" FontSize="11" FontAttributes="Bold" TextColor="#e0e0e0" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False"/>
+            <Label x:Name="ResultsD6Equals" Text="=" Opacity="0.5" FontSize="20" TextColor="#e0e0e0" Grid.Row="3" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" IsVisible="False"/>
+            <Label x:Name="ResultsD6C" FontSize="16" TextColor="#ffffff" FontAttributes="Bold" Text="" Grid.Row="3" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False"/>
+            <!-- D4 Results Row -->
+            <Label x:Name="ResultsD4A" FontSize="14" FontAttributes="Bold" Text="" TextColor="#ffffff" Grid.Row="4" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="End" IsVisible="False"/>
+            <Label x:Name="ResultsD4B" Text="" FontSize="11" FontAttributes="Bold" TextColor="#e0e0e0" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False"/>
+            <Label x:Name="ResultsD4Equals" Text="=" Opacity="0.5" FontSize="20" TextColor="#e0e0e0" Grid.Row="4" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" IsVisible="False"/>
+            <Label x:Name="ResultsD4C" FontSize="16" TextColor="#ffffff" FontAttributes="Bold" Text="" Grid.Row="4" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False"/>
+            <!-- Custom Dice Results Row -->
+            <Label x:Name="ResultsDxA" FontSize="14" FontAttributes="Bold" Text="" TextColor="#ffffff" Grid.Row="5" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="End" IsVisible="False"/>
+            <Label x:Name="ResultsDxB" Text="" FontSize="11" FontAttributes="Bold" TextColor="#e0e0e0" Grid.Row="5" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False"/>
+            <Label x:Name="ResultsDxEquals" Text="=" Opacity="0.5" FontSize="20" TextColor="#e0e0e0" Grid.Row="5" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End" IsVisible="False"/>
+            <Label x:Name="ResultsDxC" FontSize="16" TextColor="#ffffff" FontAttributes="Bold" Text="" Grid.Row="5" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False"/>
+            <!-- Total Row -->
+            <Label x:Name="LineRow" Text="" Opacity="0.2" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="1" BackgroundColor="#000000" HeightRequest="2"  Margin="0" WidthRequest="350" VerticalOptions="End" HorizontalOptions="Center" IsVisible="False"/>
+            <Label x:Name="TtlAmtRoll" Text="Total Amount Rolled:" FontSize="16" Opacity="0.5" TextColor="#e0e0e0" FontAttributes="Bold" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False"/>
+            <Label x:Name="ResultsTotal" Text="" FontSize="30" TextColor="#ffc800" FontAttributes="Bold" Grid.Row="7" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False"/>
+            <!-- Last Amount Rolled Row -->
+            <Label x:Name="ResultsLastTotal" FontSize="11"  Margin="22,-5,0,0" TextColor="#ffffff" Opacity="0.8" Text="Last Amount Rolled:" FontAttributes="Italic" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="End" HeightRequest="25" HorizontalOptions="Start" IsVisible="False"/>
+            <!-- Roll Button Section -->
+            <Button Text="Roll Dice" x:Name="RollButton" IsEnabled="False" Margin="20,0,20,0" Button.TextColor="#063466" BackgroundColor="#ffc800" Clicked="RollDice" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" VerticalOptions="End" HorizontalOptions="Fill"/>
+        <Label FontSize="12" Opacity="0.8" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="4" HorizontalOptions="Center" VerticalOptions="End" HeightRequest="60">
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                            <Span Text="Tap  " FontAttributes="None" TextColor="#ffffff" />
+                            <Span Text="ROLL DICE" FontAttributes="bold" TextColor="#063466" />
+                            <Span Text="  or " FontAttributes="None" TextColor="#ffffff" />
+                            <Span Text="shake device" FontAttributes="bold" TextColor="#ffffff" />
+                            <Span Text=" to roll the selected dice." FontAttributes="None" TextColor="#ffffff" />
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
             </Label>
-            <Label FontSize="16">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <FormattedString.Spans>
-                            <Span Text="Check out my " TextColor="#555555"  />
-                            <Span Text="Github " 
-                                 FontAttributes="Bold"
-                                  FontSize="17"
-                                  TextColor="#24292f"/>
-                            <Span Text="repository to see some of my latest personal projects and/or give me a follow!" TextColor="#555555"  />
-                        </FormattedString.Spans>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <Button Text="Github"
-                    Button.TextColor="White"
-                    BackgroundColor="#24292f"
-                    Clicked="OnButtonClicked" Margin="0,0,0,10" />
-            <Label FontSize="16">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <FormattedString.Spans>
-                            <Span Text="Visit my " TextColor="#555555" />
-                            <Span Text="LinkedIn " 
-                                 FontAttributes="Bold"
-                                  FontSize="17"
-                                  TextColor="#0072b1"/>
-                            <Span Text="profile to review my skills and experience. And please feel free to reach out and say hello, I love to network and collaborate!"  TextColor="#555555"  />
-                        </FormattedString.Spans>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <Button Text="LinkedIn"
-                    Button.TextColor="White"
-                    BackgroundColor="#0072b1"
-                    Clicked="OnButtonClicked" />
-            <Label  HorizontalTextAlignment="Center">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Please touch " TextColor="#555555"  />
-                        <Span Text="here"
-                  TextColor="Blue"
-                  TextDecorations="Underline">
-                            <Span.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="HyperLinkTapped" />
-                            </Span.GestureRecognizers>
-                        </Span>
-                        <Span Text=" to view the privacy policy." TextColor="#555555"  />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-        </StackLayout>
-        <StackLayout Grid.Row="3"
-                     Margin="{StaticResource PageMargin}"
-                     Spacing="20">
-            <Button Text="Roll the Dice"
-                    Button.TextColor="White"
-                    BackgroundColor="#0072b1"
-                    Clicked="ShakeTest" />
-        </StackLayout>
-    </Grid>
+        </Grid>
+    </StackLayout>
 </ContentPage>
