@@ -7,7 +7,6 @@ namespace ScoreKeeper.Views
 {
     public partial class AboutPage : ContentPage
     {
-
         public AboutPage()
         {
             InitializeComponent();
@@ -23,17 +22,17 @@ namespace ScoreKeeper.Views
             await App.Current.MainPage.DisplayAlert("Alert", msg, "OK");
         }
 
-
         async void OnButtonClicked(object sender, EventArgs e)
         {
             if((sender as Button).Text.ToUpper() == "LINKEDIN")
             {
+                ShowPopup("Join the Loafer Clan!");
                 // Launch the specified URL in the system browser.
-                await Launcher.OpenAsync("https://www.linkedin.com/in/bjmacdonald/");
+                // await Browser.OpenAsync("https://www.linkedin.com/in/bjmacdonald/", BrowserLaunchMode.SystemPreferred);
             } else
             {
                 // Launch the specified URL in the system browser.
-                await Launcher.OpenAsync("https://github.com/BrianMac/");
+                await Browser.OpenAsync("https://github.com/BrianMac/", BrowserLaunchMode.SystemPreferred);
             }
         }
     }

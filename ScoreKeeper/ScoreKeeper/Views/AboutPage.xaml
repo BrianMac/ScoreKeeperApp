@@ -2,66 +2,60 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ScoreKeeper.Views.AboutPage"
-             Title="About: Brian MacDonald">
+             Title="About Me:">
     <!-- Layout children in two rows -->
     <ScrollView>
         <Grid RowDefinitions="Auto,*">
-            <Image Source="xamarin_logo.png"
-                   BackgroundColor="{StaticResource AppPrimaryColor}"
-                   Opacity="0.85"
-                   VerticalOptions="Center"
-                   HeightRequest="64" />
             <!-- Layout children vertically -->
-            <Image Source="dice_roll.png"
-                   HorizontalOptions="Start" Aspect="AspectFit"/>
             <StackLayout Grid.Row="1"
                          Margin="{StaticResource PageMargin}"
                          Spacing="20">
-                <Label FontSize="22">
+                <Label FontSize="22" HorizontalOptions="Center">
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="Brian MacDonald"
+                                <Span Text="Brian MacDonald "
                                       FontAttributes="Bold"
-                                      FontSize="22" TextColor="#555555" />
-                                <Span Text=" v1.0" TextColor="#878787" />
+                                      FontSize="22" TextColor="#ffffff" />
+                                <Span Text="  ▸ "
+                                      FontAttributes="Bold"
+                                      FontSize="22" TextColor="#ffffff" />
+                                <Span Text="  Software Engineer" FontSize="18" TextColor="#e6e6e6" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Image Source="xamarin_logo.png"
-                   BackgroundColor="{StaticResource AppPrimaryColor}"
-                   Opacity="0.85"
-                   VerticalOptions="Center"
-                   HeightRequest="200" />
-                <Label FontSize="16">
+                <Label FontSize="14" Opacity="0.8" Margin="10,0,5,30" VerticalOptions="StartAndExpand" >
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="Check out my " TextColor="#555555"  />
-                                <Span Text="Github " 
-                                     FontAttributes="Bold"
-                                      FontSize="17"
-                                      TextColor="#24292f"/>
-                                <Span Text="repository to see some of my latest personal projects and/or give me a follow!" TextColor="#555555"  />
+                                <Span Text="Enthusiastic and proactive Software Engineer with experience in production art and design. Creative problem-solver who thrives in a dynamic environment and enjoys collaboration. A lifelong learner with strong communication skills and work ethic."
+                                      TextColor="#f0f0f0" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Image Source="xamarin_logo.png"
-                   BackgroundColor="{StaticResource AppPrimaryColor}"
-                   Opacity="0.85"
-                   VerticalOptions="Center"
-                   HeightRequest="200" />
-                <Button Text="Github"
+                <Label FontSize="16" Opacity="0.8">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Check out my " TextColor="#f0f0f0"  />
+                                <Span Text="GitHub " FontAttributes="Bold" FontSize="17" TextColor="#24292f"/>
+                                <Span Text="repository to see some of my latest personal projects and/or give me a follow!" TextColor="#f0f0f0"  />
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Button Text="GitHub"
+                        TextTransform="None"
                         Button.TextColor="White"
                         BackgroundColor="#24292f"
                         Clicked="OnButtonClicked" Margin="0,0,0,10" />
-                <Label FontSize="16">
-                    <Label.FormattedText>
+                <Label FontSize="16"  Opacity="0.8" />
+                <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="Visit my " TextColor="#555555" />
+                                <Span Text="Visit my " TextColor="#f0f0f0" />
                                 <Span Text="LinkedIn " 
                                      FontAttributes="Bold"
                                       FontSize="17"
@@ -71,22 +65,8 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Image Source="xamarin_logo.png"
-                   BackgroundColor="{StaticResource AppPrimaryColor}"
-                   Opacity="0.85"
-                   VerticalOptions="Center"
-                   HeightRequest="200" />
-                <Image Source="xamarin_logo.png"
-                   BackgroundColor="{StaticResource AppPrimaryColor}"
-                   Opacity="0.85"
-                   VerticalOptions="Center"
-                   HeightRequest="200" />
-                <Image Source="xamarin_logo.png"
-                   BackgroundColor="{StaticResource AppPrimaryColor}"
-                   Opacity="0.85"
-                   VerticalOptions="Center"
-                   HeightRequest="200" />
                 <Button Text="LinkedIn"
+                        TextTransform="None"
                         Button.TextColor="White"
                         BackgroundColor="#0072b1"
                         Clicked="OnButtonClicked" />
