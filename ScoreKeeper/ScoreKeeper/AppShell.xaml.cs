@@ -9,6 +9,7 @@ namespace ScoreKeeper
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(PlayerEntryPage), typeof(PlayerEntryPage));
+            Routing.RegisterRoute(nameof(CustomDiceConfig), typeof(CustomDiceConfig));
         }
     }
 }

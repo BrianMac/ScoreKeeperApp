@@ -38,5 +38,12 @@ namespace ScoreKeeper.Views
                 await Shell.Current.GoToAsync($"{nameof(PlayerEntryPage)}?{nameof(PlayerEntryPage.ItemId)}={player.ID.ToString()}");
             }
         }
+
+        private void UpdateScore(object sender, EventArgs e)
+        {
+
+                App.Current.MainPage.DisplayAlert("Alert:", "You Clicked a " + sender.GetType().ToString(), "Dismiss");
+
+        }
     }
 }

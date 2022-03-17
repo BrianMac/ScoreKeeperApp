@@ -3,6 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ScoreKeeper.Views.DicePage"
              Title="Dice Roll">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="SoundButton" Text="🔈"
+                     Clicked="ToggleSound" />
+    </ContentPage.ToolbarItems>
     <StackLayout>
         <ScrollView x:Name="ScrVw" Padding="5,5,5,0" BackgroundColor="DarkMagenta" >
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*,Auto">
@@ -139,7 +143,7 @@
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 WidthRequest="200"
-                HeightRequest="48"/>              
+                HeightRequest="48"/>
                 <Button Text="-"
                 x:Name="D6minus" ClassId="D6MinusClass"
                 Padding="0,0,0,2"
@@ -171,7 +175,7 @@
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 IsVisible="true" />
-                <!-- Sixth Row D6 label -->                
+                <!-- Sixth Row D6 label -->
                 <Label x:Name="D6lbl" Text=""
                 Margin="0,-10,0,0"
                 TextColor="#363636"
@@ -270,16 +274,20 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Start"
                 HeightRequest="48"/>
-                <ImageButton Source="d_x.png" x:Name="Dx"
-                Margin="0,-5,0,0"
-                BackgroundColor="Transparent"
-                HeightRequest="75"
-                Grid.Row="8" Grid.Column="1"
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
-                IsVisible="true"
-                Clicked="SetCustomDiceRange"/>
+                <ImageButton Source="d_x.png" x:Name="Dx" Margin="0,-5,0,0" BackgroundColor="Transparent" HeightRequest="75" Grid.Row="8" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Start" IsVisible="true" Clicked="SetCustomDiceRange"/>
                 <!-- Tenth Row -->
+                <Label x:Name="Dxrange" Text=""
+                Margin="23,-15,0,0"
+                TextColor="#363636"
+                FontSize="11"
+                Opacity="0.8"                       
+                FontAttributes="Bold"
+                Grid.Row="9" Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                HeightRequest="23"
+                IsVisible="true" />
                 <Label x:Name="Dxlbl" Text=""
                 Margin="0,-10,0,25"
                 TextColor="#363636"
@@ -294,10 +302,10 @@
             </Grid>
         </ScrollView>
         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto,*,Auto,Auto"  ColumnDefinitions="Auto,*,20,100" Padding="10,5,10,-20">
-        <!-- Results Section -->
+            <!-- Results Section -->
             <!-- Results Header -->
-            <Label Text=" RESULTS:" FontSize="20" TextColor="#38154a" FontAttributes="Bold" Opacity="0.8" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Start" HorizontalOptions="Start" />
-            <Button x:Name="ClearResultsBtn" Opacity="1" Text="Clear" FontSize="13" Padding="0" HeightRequest="36" Button.TextColor="White" BackgroundColor="#0072b1" Margin="0,0,0,0" Clicked="ClearResults" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" VerticalOptions="Start" HorizontalOptions="End"/>
+            <Label Text=" RESULTS:" FontSize="20" TextColor="#38154a" FontAttributes="Bold" Opacity="0.8" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="StartAndExpand" HorizontalOptions="Start" />
+            <Button x:Name="ClearResultsBtn" Opacity="1" Text="Clear" FontSize="13" Padding="0" HeightRequest="20" Button.TextColor="White" BackgroundColor="#0072b1" Margin="0,0,0,0" Clicked="ClearResults" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" VerticalOptions="StartAndExpand" HorizontalOptions="End"/>
             <!-- D100 Results Row -->
             <Label x:Name="ResultsD100A" FontSize="14" FontAttributes="Bold" Text="" TextColor="#ffffff" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="End" IsVisible="False"/>
             <Label x:Name="ResultsD100B" Text="" FontSize="11" FontAttributes="Bold" TextColor="#e0e0e0" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False"/>
@@ -331,18 +339,18 @@
             <Label x:Name="ResultsLastTotal" FontSize="11"  Margin="22,-5,0,0" TextColor="#ffffff" Opacity="0.8" Text="Last Amount Rolled:" FontAttributes="Italic" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="End" HeightRequest="25" HorizontalOptions="Start" IsVisible="False"/>
             <!-- Roll Button Section -->
             <Button Text="Roll Dice" x:Name="RollButton" IsEnabled="False" Margin="20,0,20,0" Button.TextColor="#063466" BackgroundColor="#ffc800" Clicked="RollDice" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" VerticalOptions="End" HorizontalOptions="Fill"/>
-        <Label FontSize="12" Opacity="0.8" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="4" HorizontalOptions="Center" VerticalOptions="End" HeightRequest="60">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
+            <Label FontSize="12" Opacity="0.8" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="4" HorizontalOptions="Center" VerticalOptions="End" HeightRequest="60">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
                             <Span Text="Tap  " FontAttributes="None" TextColor="#ffffff" />
                             <Span Text="ROLL DICE" FontAttributes="bold" TextColor="#063466" />
                             <Span Text="  or " FontAttributes="None" TextColor="#ffffff" />
                             <Span Text="shake device" FontAttributes="bold" TextColor="#ffffff" />
                             <Span Text=" to roll the selected dice." FontAttributes="None" TextColor="#ffffff" />
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
             </Label>
         </Grid>
     </StackLayout>

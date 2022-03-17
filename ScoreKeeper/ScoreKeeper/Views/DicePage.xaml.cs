@@ -4,6 +4,8 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using ScoreKeeper.Models;
 
 namespace ScoreKeeper.Views
 {
@@ -18,8 +20,11 @@ namespace ScoreKeeper.Views
         int numD4 = 0;
         int numDx = 0;
 
-        int Dxlow = 1;
-        int Dxhigh = 50;
+        //int Dxlow = Convert.ToInt32(Application.Current.Properties["LowEndNumber"]);
+        //int Dxhigh = Convert.ToInt32(Application.Current.Properties["HighEndNumber"]);
+        public static int Dxlow = 1;
+        public static int Dxhigh = 50;
+        public static int Range = ((Dxlow - 1) - Dxhigh);
 
         int resultsTotal = 0;
         int resultsLastTotal = 0;
@@ -82,8 +87,14 @@ namespace ScoreKeeper.Views
                     if (i == 3) //D4
                         rollArray[j] = rnd.Next(1, 5);
 
-                    if (i == 4) //Dx
+                    if (i == 4)
+                    {
+                        // Dxlow = Convert.ToInt32(Application.Current.Properties["LowEndNumber"]);
+                        // Dxhigh = Convert.ToInt32(Application.Current.Properties["HighEndNumber"]);
                         rollArray[j] = rnd.Next(Dxlow, Dxhigh + 1);
+                    } //Dx
+
+                        
                 }
                 DiceRollsList.Add(rollArray);
             }
@@ -238,6 +249,20 @@ namespace ScoreKeeper.Views
             TtlAmtRoll.IsVisible = false;
             LineRow.IsVisible = false;
             ResultsLastTotal.IsVisible = false;
+        }
+
+        //Todo replace speaker characters with images that match the style of app design
+        public void ToggleSound(object sender, EventArgs e)
+        {
+            rollSoundEnabled = !rollSoundEnabled;
+            if (rollSoundEnabled)
+            {
+                SoundButton.Text = "🔈";
+            }
+            else
+            {
+                SoundButton.Text = "🔇";
+            }
         }
 
         public void RotateDiceImages(string die)
@@ -425,28 +450,41 @@ namespace ScoreKeeper.Views
         // Todo, replace this with a flyout or separate page to enter data, rather than the simple prompt
         public async void SetCustomDiceRange(object sender, EventArgs e)
         {
-            //This needs real validation
-            try
+            CustomDice customDice = new CustomDice();
+            await Shell.Current.GoToAsync($"{nameof(CustomDiceConfig)}?{nameof(CustomDiceConfig.DiceId)}={customDice.ID.ToString()}");
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (await App.Database.GetDieAsync(1) == null)
             {
-                Dxlow = Convert.ToInt32(await DisplayPromptAsync("Set Low End of Range:", "What is the lower end to the range?", initialValue: Dxlow.ToString(), maxLength: 3, keyboard: Keyboard.Numeric));
-                if (Dxlow <= 0)
-                {
-                    throw new Exception("error");
-                }
+                CustomDice setup = new CustomDice();
+                setup.ID = 0;
+                setup.LowEnd = 1;
+                setup.HighEnd = 50;
+                await App.Database.SaveDiceAsync(setup);
+                Dxrange.Text = $"D50 (1-50)";
             }
-            catch (Exception)
+            else
             {
-                ShowPopup("Invalid entry, must be a positive, non-zero, whole number.");
+                try
+                {
+                    CustomDice customDice = await App.Database.GetDieAsync(1);
+                    BindingContext = customDice;
+                    Dxrange.Text = $"D{customDice.HighEnd - (customDice.LowEnd - 1)} ({customDice.LowEnd}-{customDice.HighEnd})";
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Failed to load custom dice.");
+                }
+                
             }
 
-            try
-            {
-                Dxhigh = Convert.ToInt32(await DisplayPromptAsync("Set High End of Range:", "What is the higher end to the range?", initialValue: Dxhigh.ToString(), maxLength: 3, keyboard: Keyboard.Numeric));
-            }
-            catch (Exception)
-            {
-                ShowPopup("Invalid entry, must be a positive, non-zero, whole number that is higher than the lower end of range.");
-            }
+            // Retrieve all the players from the database, and set them as the
+            // data source for the CollectionView.
+            //var test = await App.Database.GetDiceAsync();
         }
 
         public void ShowPopup(string msg)

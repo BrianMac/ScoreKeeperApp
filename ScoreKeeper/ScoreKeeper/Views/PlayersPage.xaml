@@ -33,28 +33,37 @@
     <CollectionView x:Name="collectionView"
                     Margin="{StaticResource PageMargin}"
                     SelectionMode="Single"
-                    SelectionChanged="OnSelectionChanged">
+                    SelectionChanged="OnSelectionChanged" >
+        
         <CollectionView.ItemsLayout>
-            <LinearItemsLayout Orientation="Vertical"
-                               ItemSpacing="20" />
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="20" />
         </CollectionView.ItemsLayout>
         <!-- Define the appearance of each item in the list -->
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <StackLayout>
+                <Grid ColumnDefinitions="75,Auto,75" RowDefinitions="Auto">
+                    <ImageButton Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0" Clicked="UpdateScore" Source="dice_roll.png" Aspect="AspectFill" BackgroundColor="#ff8400" />
+                    <Label Margin="5,0,0,0" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Text="{Binding Text}"
+                           TextColor="{StaticResource PlayerNameColor}"
+                           FontSize="22" FontAttributes="Bold"/>
+                    <Button Margin="5,0,0,0" Grid.Column="2" Grid.ColumnSpan="2" HeightRequest="75" WidthRequest="75" Grid.Row="0" VerticalOptions="Start" HorizontalOptions="End" TextColor="{StaticResource TertiaryColor}" FontSize="12" Text="{Binding Date}"/>
+                    <Label Margin="5,0,0,0" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" HorizontalOptions="StartAndExpand" VerticalOptions="End" Text="{Binding Date}" TextColor="{StaticResource TertiaryColor}" FontSize="12" />
+                </Grid>
+                <!--<StackLayout>
                     <Label Text="{Binding Text}"
                            TextColor="{StaticResource PlayerNameColor}"
                            FontSize="Medium" />
                     <Label Text="{Binding Date}"
                            TextColor="{StaticResource TertiaryColor}"
                            FontSize="Small" />
-                    <Label Text="Add Points"
+                    <Button Text="Add Points"
                            TextColor="{StaticResource PlayerNameColor}"
                            FontSize="Large" 
                            BackgroundColor="Goldenrod"
                            WidthRequest="200"
-                           HeightRequest="100"/>
-                </StackLayout>
+                           HeightRequest="100"
+                           Clicked="UpdateScore"/>
+                </StackLayout>-->
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>

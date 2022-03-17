@@ -22,6 +22,7 @@ namespace ScoreKeeper
             }
         }
 
+
         public App()
         {
             InitializeComponent();

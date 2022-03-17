@@ -13,6 +13,7 @@ namespace ScoreKeeper.Data
         {
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<Player>().Wait();
+            database.CreateTableAsync<CustomDice>().Wait();
         }
 
         public Task<List<Player>> GetPlayersAsync()
@@ -25,6 +26,14 @@ namespace ScoreKeeper.Data
         {
             // Get a specific player.
             return database.Table<Player>()
+                            .Where(i => i.ID == id)
+                            .FirstOrDefaultAsync();
+        }
+
+        public Task<CustomDice> GetDieAsync(int id)
+        {
+            // Get a specific player.
+            return database.Table<CustomDice>()
                             .Where(i => i.ID == id)
                             .FirstOrDefaultAsync();
         }
@@ -47,6 +56,25 @@ namespace ScoreKeeper.Data
         {
             // Delete a player.
             return database.DeleteAsync(player);
+        }
+
+        public Task<List<CustomDice>> GetDiceAsync()
+        {
+            return database.Table<CustomDice>().ToListAsync();
+        }
+
+        public Task<int> SaveDiceAsync(CustomDice customDice)
+        {
+                if (customDice.ID != 0)
+                {
+                    // Update an existing player.
+                    return database.UpdateAsync(customDice);
+                }
+                else
+                {
+                    // Save a new player.
+                    return database.InsertAsync(customDice);
+                }
         }
     }
 }

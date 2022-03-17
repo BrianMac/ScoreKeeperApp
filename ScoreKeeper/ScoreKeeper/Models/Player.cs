@@ -15,4 +15,14 @@ namespace ScoreKeeper.Models
         //public int CurrentScore { get; set; }
 
     }
+
+    public class CustomDice
+    {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public int LowEnd { get; set; }
+        public int HighEnd { get; set; }
+    }
+
+
 }
