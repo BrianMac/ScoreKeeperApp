@@ -20,13 +20,14 @@ namespace ScoreKeeper.Views
 
             // Retrieve all the players from the database, and set them as the
             // data source for the CollectionView.
-            collectionView.ItemsSource = await App.Database.GetPlayersAsync();
+            collectionView.ItemsSource = await App.Database.GetAllPlayersAsync();
         }
 
         async void OnAddClicked(object sender, EventArgs e)
         {
             // Navigate to the PlayerEntryPage, without passing any data.
-            await Shell.Current.GoToAsync(nameof(PlayerEntryPage));
+            //await Shell.Current.GoToAsync(nameof(PlayerEntryPage));
+            await Shell.Current.GoToAsync($"{nameof(PlayerEntryPage)}?{nameof(PlayerEntryPage.NewAdd)}={""}");
         }
 
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,11 +40,39 @@ namespace ScoreKeeper.Views
             }
         }
 
-        private void UpdateScore(object sender, EventArgs e)
+        void PlayerOptions(object sender, EventArgs e)
         {
 
-                App.Current.MainPage.DisplayAlert("Alert:", "You Clicked a " + sender.GetType().ToString(), "Dismiss");
+        }
 
+        void ManuallyUpdateScore(object sender, EventArgs e)
+        {
+
+        }
+
+        async void UpdateScore(object sender, EventArgs e)
+        {
+            ImageButton btn = (sender as ImageButton);
+            Player player = await App.Database.GetPlayerAsync(Convert.ToInt32(btn.ClassId));
+            if (player != null)
+            {
+                int score = player.CurrentScore;
+
+                switch (btn.CornerRadius.ToString())
+                {
+                    case "10":
+                        score++;
+                        break;
+                    case "9":
+                        score--;
+                        break;
+                    default:
+                        break;
+                }
+                player.CurrentScore = score;
+                await App.Database.SavePlayerAsync(player);
+                collectionView.ItemsSource = await App.Database.GetAllPlayersAsync();
+            }
         }
     }
 }

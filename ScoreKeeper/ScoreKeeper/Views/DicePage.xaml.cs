@@ -7,6 +7,7 @@ using System.Linq;
 using System.IO;
 using ScoreKeeper.Models;
 
+
 namespace ScoreKeeper.Views
 {
     public partial class DicePage : ContentPage
@@ -31,7 +32,6 @@ namespace ScoreKeeper.Views
         bool rollSoundEnabled = true;
 
         #endregion
-
         public DicePage()
         {
             InitializeComponent();
@@ -94,7 +94,7 @@ namespace ScoreKeeper.Views
                         rollArray[j] = rnd.Next(Dxlow, Dxhigh + 1);
                     } //Dx
 
-                        
+
                 }
                 DiceRollsList.Add(rollArray);
             }
@@ -257,11 +257,11 @@ namespace ScoreKeeper.Views
             rollSoundEnabled = !rollSoundEnabled;
             if (rollSoundEnabled)
             {
-                SoundButton.Text = "🔈";
+                SoundButton.IconImageSource = "unmute_icon.png";
             }
             else
             {
-                SoundButton.Text = "🔇";
+                SoundButton.IconImageSource = "mute_icon.png";
             }
         }
 
@@ -304,7 +304,7 @@ namespace ScoreKeeper.Views
         //Todo refactor this
         public void IncrementDice(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
+            ImageButton btn = (ImageButton)sender;
             if (btn.ClassId.ToString() == "D100PlusClass")
             {
                 numD100 += 1;
@@ -473,18 +473,16 @@ namespace ScoreKeeper.Views
                 {
                     CustomDice customDice = await App.Database.GetDieAsync(1);
                     BindingContext = customDice;
+
                     Dxrange.Text = $"D{customDice.HighEnd - (customDice.LowEnd - 1)} ({customDice.LowEnd}-{customDice.HighEnd})";
+                    Dxlow = customDice.LowEnd;
+                    Dxhigh = customDice.HighEnd;
                 }
                 catch (Exception)
                 {
                     Console.WriteLine("Failed to load custom dice.");
                 }
-                
             }
-
-            // Retrieve all the players from the database, and set them as the
-            // data source for the CollectionView.
-            //var test = await App.Database.GetDiceAsync();
         }
 
         public void ShowPopup(string msg)

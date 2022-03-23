@@ -67,9 +67,9 @@ namespace ScoreKeeper.Views
             {
                 if (int.TryParse(highNum, out _))
                 {
-                    if (Convert.ToInt32(highNum) < Convert.ToInt32(lowNum))
+                    if (Convert.ToInt32(highNum) <= Convert.ToInt32(lowNum))
                     {
-                        ShowPopup($"High end value is less than Low end value. Enter a positive whole number greater than {lowNum}.");
+                        ShowPopup($"High end value is less than or equal to Low end value. Enter a positive whole number greater than {lowNum}.");
                         return false;
                     }
                     else

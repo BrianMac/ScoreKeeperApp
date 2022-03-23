@@ -16,10 +16,12 @@
         <Label Text="Custom Dice Configuration "/>
         <Editor x:Name="lowEnd" Placeholder="Enter new low-end number"
                 Text="{Binding LowEnd}"
-                HeightRequest="100" />
+                HeightRequest="100"
+                MaxLength="5" />
         <Editor x:Name="highEnd" Placeholder="Enter new High-end number"
                 Text="{Binding HighEnd}"
-                HeightRequest="100" />
+                HeightRequest="100"
+                MaxLength="5" />
         <Grid ColumnDefinitions="*,*">
             <!-- Layout children in two columns -->
             <Button Text="Save"

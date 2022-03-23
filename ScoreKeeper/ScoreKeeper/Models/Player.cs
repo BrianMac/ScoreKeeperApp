@@ -7,13 +7,16 @@ namespace ScoreKeeper.Models
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
-        public string Text { get; set; }
+        public string AvatarFileName { get; set; }
+        public string Name { get; set; }
         public DateTime Date { get; set; }
-
-        //public string Name { get; set; }
-        //public int AvatarID { get; set; }
-        //public int CurrentScore { get; set; }
-
+        public bool IsPlaying { get; set; }
+        public int AvatarID { get; set; }
+        public string ItemBackground { get; set; }
+        public string AvatarBackground { get; set; }
+        public int CurrentScore { get; set; }
+        public int NumOfWins { get; set; }
+        public int TurnOrder { get; set; }
     }
 
     public class CustomDice

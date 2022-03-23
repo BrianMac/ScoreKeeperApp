@@ -16,24 +16,24 @@ namespace ScoreKeeper.Data
             database.CreateTableAsync<CustomDice>().Wait();
         }
 
-        public Task<List<Player>> GetPlayersAsync()
+        public Task<List<Player>> GetAllPlayersAsync()
         {
             //Get all players.
             return database.Table<Player>().ToListAsync();
+        }
+
+        public Task<List<Player>> GetCurrentPlayersAsync()
+        {
+            //Get all players that are currently playing.
+            return database.Table<Player>()
+                            .Where(p => p.IsPlaying == true)
+                            .ToListAsync();
         }
 
         public Task<Player> GetPlayerAsync(int id)
         {
             // Get a specific player.
             return database.Table<Player>()
-                            .Where(i => i.ID == id)
-                            .FirstOrDefaultAsync();
-        }
-
-        public Task<CustomDice> GetDieAsync(int id)
-        {
-            // Get a specific player.
-            return database.Table<CustomDice>()
                             .Where(i => i.ID == id)
                             .FirstOrDefaultAsync();
         }
@@ -63,18 +63,28 @@ namespace ScoreKeeper.Data
             return database.Table<CustomDice>().ToListAsync();
         }
 
+        public Task<CustomDice> GetDieAsync(int id)
+        {
+            // Get custom dice value.
+            return database.Table<CustomDice>()
+                            .Where(i => i.ID == id)
+                            .FirstOrDefaultAsync();
+        }
+
         public Task<int> SaveDiceAsync(CustomDice customDice)
         {
                 if (customDice.ID != 0)
                 {
-                    // Update an existing player.
+                    // Update custom dice value.
                     return database.UpdateAsync(customDice);
                 }
                 else
                 {
-                    // Save a new player.
-                    return database.InsertAsync(customDice);
+                // Save initial custom dice value.
+                return database.InsertAsync(customDice);
                 }
         }
+
+
     }
 }
