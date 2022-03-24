@@ -26,7 +26,6 @@ namespace ScoreKeeper.Views
         async void OnAddClicked(object sender, EventArgs e)
         {
             // Navigate to the PlayerEntryPage, without passing any data.
-            //await Shell.Current.GoToAsync(nameof(PlayerEntryPage));
             await Shell.Current.GoToAsync($"{nameof(PlayerEntryPage)}?{nameof(PlayerEntryPage.NewAdd)}={""}");
         }
 
@@ -40,15 +39,9 @@ namespace ScoreKeeper.Views
             }
         }
 
-        void PlayerOptions(object sender, EventArgs e)
-        {
+        //void PlayerOptions(object sender, EventArgs e){}
 
-        }
-
-        void ManuallyUpdateScore(object sender, EventArgs e)
-        {
-
-        }
+        //void ManuallyUpdateScore(object sender, EventArgs e){}
 
         async void UpdateScore(object sender, EventArgs e)
         {

@@ -5,30 +5,39 @@
              Title="Custom Dice Configuration">
     <ContentPage.Resources>
         <!-- Implicit styles -->
-        <Style TargetType="{x:Type Editor}">
-            <Setter Property="BackgroundColor"
-                    Value="{StaticResource AppBackgroundColor}" />
+        <Style 
+            TargetType="{x:Type Editor}">
+            <Setter 
+                Property="BackgroundColor"
+                Value="{StaticResource AppBackgroundColor}" />
         </Style>
     </ContentPage.Resources>
 
     <!-- Layout children vertically -->
-    <StackLayout Margin="{StaticResource PageMargin}">
-        <Label Text="Custom Dice Configuration "/>
-        <Editor x:Name="lowEnd" Placeholder="Enter new low-end number"
-                Text="{Binding LowEnd}"
-                HeightRequest="100"
-                MaxLength="5" />
-        <Editor x:Name="highEnd" Placeholder="Enter new High-end number"
-                Text="{Binding HighEnd}"
-                HeightRequest="100"
-                MaxLength="5" />
-        <Grid ColumnDefinitions="*,*">
-            <!-- Layout children in two columns -->
-            <Button Text="Save"
-                    Clicked="OnSaveButtonClicked" />
-            <Button Grid.Column="1"
-                    Text="Cancel"
-                    Clicked="OnCancelButtonClicked"/>
+    <StackLayout 
+        Margin="{StaticResource PageMargin}">
+        <Label 
+            Text="Custom Dice Configuration "/>
+        <Editor 
+            x:Name="lowEnd" Placeholder="Enter new low-end number"
+            Text="{Binding LowEnd}"
+            HeightRequest="100"
+            MaxLength="5" />
+        <Editor 
+            x:Name="highEnd" 
+            Placeholder="Enter new High-end number"
+            Text="{Binding HighEnd}"
+            HeightRequest="100"
+            MaxLength="5" />
+        <Grid 
+            ColumnDefinitions="*,*">
+            <Button 
+                Text="Save"
+                Clicked="OnSaveButtonClicked" />
+            <Button 
+                Grid.Column="1"
+                Text="Cancel"
+                Clicked="OnCancelButtonClicked"/>
         </Grid>
     </StackLayout>
 </ContentPage>

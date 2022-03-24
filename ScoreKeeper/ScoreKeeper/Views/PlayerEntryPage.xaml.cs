@@ -10,6 +10,17 @@ namespace ScoreKeeper.Views
     public partial class PlayerEntryPage : ContentPage
     {
         int selectedAvatar = -1;
+        readonly string[] avatars = new string[] { 
+            "avatar_01.png", 
+            "avatar_02.png", 
+            "avatar_03.png", 
+            "avatar_04.png", 
+            "avatar_05.png", 
+            "avatar_06.png", 
+            "avatar_07.png", 
+            "avatar_08.png", 
+            "default_avatar.png" };
+
         public string ItemId
         {
             set
@@ -21,15 +32,12 @@ namespace ScoreKeeper.Views
         {
             set
             {
-                ChangeAvatar(value);
+                ChangeAvatarPreview(value);
             }
         }
-
         public PlayerEntryPage()
         {
             InitializeComponent();
-
-
             // Set the BindingContext of the page to a new Player.
             BindingContext = new Player();
         }
@@ -42,6 +50,7 @@ namespace ScoreKeeper.Views
                 // Retrieve the player and set it as the BindingContext of the page.
                 Player player = await App.Database.GetPlayerAsync(id);
                 BindingContext = player;
+                // Show the default avatar if player hasn't already chosen one
                 if (player.AvatarFileName == "")
                 {
                     AvatarPreview.Source = "default_avatar.png";
@@ -59,38 +68,8 @@ namespace ScoreKeeper.Views
 
         private void SetSelectedAvatar(string avatarFileName)
         {
-            int selection;
-            switch (avatarFileName)
-            {
-                case ("avatar_01.png"):
-                    selection = 0;
-                    break;
-                case ("avatar_02.png"):
-                    selection = 1;
-                    break;
-                case ("avatar_03.png"):
-                    selection = 2;
-                    break;
-                case ("avatar_04.png"):
-                    selection = 3;
-                    break;
-                case ("avatar_05.png"):
-                    selection = 4;
-                    break;
-                case ("avatar_06.png"):
-                    selection = 5;
-                    break;
-                case ("avatar_07.png"):
-                    selection = 6;
-                    break;
-                case ("avatar_08.png"):
-                    selection = 7;
-                    break;
-                default:
-                    selection = -1;
-                    break;
-            }
-            selectedAvatar = selection;
+            selectedAvatar = Array.IndexOf(avatars, avatarFileName);
+            AvatarPreview.Source = avatars[selectedAvatar];
         }
 
         async void OnSaveButtonClicked(object sender, EventArgs e)
@@ -100,55 +79,45 @@ namespace ScoreKeeper.Views
             player.AvatarFileName = GetAvatarText(selectedAvatar);
             if (!string.IsNullOrWhiteSpace(player.Name))
             {                
-                await App.Database.SavePlayerAsync(player);
+                if ((await App.Database.SavePlayerAsync(player)) > 0)
+                {
+                    // Navigate backwards upon successful save
+                    await Shell.Current.GoToAsync("..");
+                }
+                else
+                {
+                    string msg = "Sorry, there was a problem saving.";
+                    await App.Current.MainPage.DisplayAlert("Alert:", msg, "Dismiss");
+                    await Shell.Current.GoToAsync("..");
+                }
             }
+            else
+            {   
+                // Prompt player to set a name.
+                string msg = "Player Name invalid. Field must not empty.";
+                await App.Current.MainPage.DisplayAlert("Alert:", msg, "Dismiss");
+                PlayerName.Focus();
+            }
+        }
 
-            // Navigate backwards
+        async void CancelAndReturn(object sender, EventArgs e)
+        {
             await Shell.Current.GoToAsync("..");
         }
 
         private string GetAvatarText(int selectedAvatar)
         {
-            var player = (Player)BindingContext;
-            string avatar = player.AvatarFileName;
-
-            switch (selectedAvatar)
+            if (!(selectedAvatar == -1))
             {
-                case (0):
-                    avatar = "avatar_01.png";
-                    break;
-                case (1):
-                    avatar = "avatar_02.png";
-                    break;
-                case (2):
-                    avatar = "avatar_03.png";
-                    break;
-                case (3):
-                    avatar = "avatar_04.png";
-                    break;
-                case (4):
-                    avatar = "avatar_05.png";
-                    break;
-                case (5):
-                    avatar = "avatar_06.png";
-                    break;
-                case (6):
-                    avatar = "avatar_07.png";
-                    break;
-                case (7):
-                    avatar = "avatar_08.png";
-                    break;
-                default:
-                    avatar = "default_avatar.png";
-                    break;
+                return avatars[selectedAvatar];
             }
-            return avatar;
+            else
+            {
+                return avatars[8];
+            }
         }
 
-        private void UpdateScore(object sender, EventArgs e)
-        {
-            App.Current.MainPage.DisplayAlert("Alert:", "You Clicked a " + sender.GetType().ToString(), "Dismiss");
-        }
+        //private void UpdateScore(object sender, EventArgs e){}
 
         private void ChangeAvatar(object sender, EventArgs e)
         {
@@ -156,19 +125,23 @@ namespace ScoreKeeper.Views
             selectedAvatar = Convert.ToInt32((sender as ImageButton).ClassId);
         }
 
-        private void ChangeAvatar(string newAdd)
+        private void ChangeAvatarPreview(string newAdd)
         {
             AvatarPreview.Source = "default_avatar.png";
+            DeleteButton.IsEnabled = false;
+            DeleteButton.IsVisible = false;
         }
 
         async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
-            var note = (Player)BindingContext;
-            await App.Database.DeletePlayerAsync(note);
-
-            // Navigate backwards
-            await Shell.Current.GoToAsync("..");
+            var response = await DisplayAlert("Delete Player?", "Are you sure you want to DELETE player?", "Continue", "Cancel");
+            if (response)
+            {
+                var playa = (Player)BindingContext;
+                await App.Database.DeletePlayerAsync(playa);
+                // Navigate backwards
+                await Shell.Current.GoToAsync("..");
+            }
         }
-
     }
 }

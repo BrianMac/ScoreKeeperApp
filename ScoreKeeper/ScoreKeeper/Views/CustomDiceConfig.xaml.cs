@@ -29,8 +29,9 @@ namespace ScoreKeeper.Views
         {
             try
             {
+                //Checking to see if custom dice database entry exists
                 int id = Convert.ToInt32(1);
-                // Retrieve the player and set it as the BindingContext of the page.
+                // Retrieve custom dice object and set it as the BindingContext of the page.
                 CustomDice customDice = await App.Database.GetDieAsync(id);
                 BindingContext = customDice;
             }

@@ -5,9 +5,6 @@
              Title="Game Setup">
     <!-- Layout children in two rows -->
     <Grid RowDefinitions="Auto,*">
-        <Image Source="dice_roll.png"
-               VerticalOptions="Center"
-               HeightRequest="100" />
     </Grid>
 </ContentPage>
     

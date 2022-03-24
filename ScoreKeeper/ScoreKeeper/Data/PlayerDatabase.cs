@@ -84,7 +84,5 @@ namespace ScoreKeeper.Data
                 return database.InsertAsync(customDice);
                 }
         }
-
-
     }
 }

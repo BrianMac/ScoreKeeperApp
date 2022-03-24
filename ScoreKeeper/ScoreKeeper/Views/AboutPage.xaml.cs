@@ -14,7 +14,11 @@ namespace ScoreKeeper.Views
 
         private async void HyperLinkTapped(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new PrivacyPolicy());
+            var lbl = sender as Label;
+            if (lbl.ClassId == "Privacy")
+            {
+                await Navigation.PushAsync(new PrivacyPolicy());
+            }
             //await Browser.OpenAsync("http://return-true.net", BrowserLaunchMode.SystemPreferred);
         }
 
@@ -25,11 +29,12 @@ namespace ScoreKeeper.Views
 
         async void OnButtonClicked(object sender, EventArgs e)
         {
-            if((sender as Button).Text.ToUpper() == "LINKEDIN")
+            if ((sender as Button).Text.ToUpper() == "LINKEDIN")
             {
                 // Launch the specified URL in the system browser.
                 await Browser.OpenAsync("https://www.linkedin.com/in/bjmacdonald/", BrowserLaunchMode.SystemPreferred);
-            } else
+            }
+            else
             {
                 // Launch the specified URL in the system browser.
                 await Browser.OpenAsync("https://github.com/BrianMac/", BrowserLaunchMode.SystemPreferred);

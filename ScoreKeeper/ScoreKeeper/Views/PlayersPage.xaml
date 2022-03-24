@@ -8,13 +8,15 @@
 
     <ContentPage.Resources>
         <!-- Define a visual state for the Selected state of the CollectionView -->
-        <converters:IndexToColorConverter x:Key="IndexToColorConverterGrid"
-                                          EvenColor="#5e0942"
-                                          OddColor="#39095e"/>
+        <converters:IndexToColorConverter 
+            x:Key="IndexToColorConverterGrid"
+            EvenColor="#5e0942"
+            OddColor="#39095e"/>
 
-        <converters:IndexToColorConverter x:Key="IndexToColorConverterText"
-                                          EvenColor="#ffbb00"
-                                          OddColor="Chartreuse"/>
+        <converters:IndexToColorConverter 
+            x:Key="IndexToColorConverterText"
+            EvenColor="#ffbb00"
+            OddColor="Chartreuse"/>
         <Style TargetType="StackLayout">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
@@ -34,40 +36,101 @@
 
     <!-- Add an item to the toolbar -->
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="End Game"
-                     Clicked="UpdateScore"  />
-        <ToolbarItem Text="+ Add Player"
-                     Clicked="OnAddClicked" />
+        <ToolbarItem Text="End Game" Clicked="UpdateScore"  />
+        <ToolbarItem Text="+ Add Player" Clicked="OnAddClicked" />
     </ContentPage.ToolbarItems>
 
     <!-- Display notes in a list -->
-    <CollectionView x:Name="collectionView"
-                    Margin="5"
-                    SelectionMode="Single"
-                    SelectionChanged="OnSelectionChanged"
-                    HorizontalOptions="FillAndExpand" >
+    <CollectionView 
+        x:Name="collectionView"
+        Margin="5"
+        SelectionMode="Single"
+        SelectionChanged="OnSelectionChanged"
+        HorizontalOptions="FillAndExpand" >
         <CollectionView.ItemsLayout>
-            <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
+            <LinearItemsLayout 
+                Orientation="Vertical" 
+                ItemSpacing="5" />
         </CollectionView.ItemsLayout>
         <!-- Define the appearance of each item in the list -->
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto,90" BackgroundColor="{Binding ., Converter={StaticResource IndexToColorConverterGrid}, ConverterParameter={x:Reference collectionView}}" Margin="0" Padding="3">
-                    <Label Margin="5,0,0,0" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0" Text="{Binding Name}"
-                           TextColor="{Binding ., Converter={StaticResource IndexToColorConverterText}, ConverterParameter={x:Reference collectionView}}"
-                           FontSize="Medium" FontAttributes="Bold"
-                           HorizontalOptions="Start" VerticalOptions="Center"/>
-                    <Label Margin="0,0,5,0" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0" Text="⚙ Player settings"
-                           TextColor="{StaticResource PlayerNameColor}"
-                           FontSize="Small"
-                           HorizontalOptions="End" VerticalOptions="Center"/>
-                    <ImageButton Grid.Column="0" ClassId="{Binding ID}" Grid.ColumnSpan="1" Grid.Row="1" Clicked="PlayerOptions" Source="{Binding AvatarFileName}" Aspect="AspectFit" BackgroundColor="#238a91" HeightRequest="100" WidthRequest="100" Margin="0,0,0,0" CornerRadius="10" />
-                    <Button Grid.Column="2" ClassId="{Binding ID}" Grid.ColumnSpan="1" Text="{Binding CurrentScore}" TextColor="#5f0963" FontAttributes="Bold" FontSize="30" Grid.Row="1" Clicked="ManuallyUpdateScore" BackgroundColor="#ff8400" HeightRequest="100"
-                                 Margin="-13,0,-13,0" CornerRadius="0"/>
-                    <ImageButton x:Name="minus" Source="minus_icon.png" Grid.Column="1" ClassId="{Binding ID}" Grid.ColumnSpan="1" Grid.Row="1" Clicked="UpdateScore" BackgroundColor="#ff8400" HeightRequest="100"
-                                 Margin="0,0,0,0" CornerRadius="9"/>
-                    <ImageButton x:Name="plus" Source="plus_icon.png"  Grid.Column="3" ClassId="{Binding ID}" Grid.ColumnSpan="1" Grid.Row="1" Clicked="UpdateScore" BackgroundColor="#ff8400" HeightRequest="100" 
-                                 Margin="0,0,0,0" CornerRadius="10"/>
+                <Grid 
+                    ColumnDefinitions="*,*,*,*" 
+                    RowDefinitions="Auto,90" 
+                    BackgroundColor="{Binding ., Converter={StaticResource IndexToColorConverterGrid}, ConverterParameter={x:Reference collectionView}}" 
+                    Margin="0" 
+                    Padding="3">
+                    <Label 
+                        Margin="5,0,0,0" 
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="4" 
+                        Grid.Row="0" 
+                        Text="{Binding Name}"
+                        TextColor="{Binding ., Converter={StaticResource IndexToColorConverterText}, ConverterParameter={x:Reference collectionView}}"
+                        FontSize="Medium" 
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Center"/>
+                    <Label 
+                        Margin="0,0,5,0" 
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="4" 
+                        Grid.Row="0" Text="⚙ Player settings"
+                        TextColor="{StaticResource PlayerNameColor}"
+                        FontSize="Small"
+                        HorizontalOptions="End" 
+                        VerticalOptions="Center"/>
+                    <ImageButton 
+                        Grid.Column="0"
+                        ClassId="{Binding ID}" 
+                        Grid.ColumnSpan="1" 
+                        Grid.Row="1" 
+                        Clicked="PlayerOptions" 
+                        Source="{Binding AvatarFileName}" 
+                        Aspect="AspectFit" 
+                        BackgroundColor="#238a91" 
+                        HeightRequest="100" 
+                        WidthRequest="100" 
+                        Margin="0,0,0,0" 
+                        CornerRadius="10" />
+                    <Button 
+                        Grid.Column="2" 
+                        ClassId="{Binding ID}" 
+                        Grid.ColumnSpan="1" 
+                        Text="{Binding CurrentScore}" 
+                        TextColor="#5f0963" 
+                        FontAttributes="Bold" 
+                        FontSize="30" 
+                        Grid.Row="1" 
+                        Clicked="ManuallyUpdateScore" 
+                        BackgroundColor="#ff8400" 
+                        HeightRequest="100"
+                        Margin="-16,0,-16,0" 
+                        CornerRadius="0"/>
+                    <ImageButton 
+                        x:Name="minus"
+                        Source="minus_icon.png" 
+                        Grid.Column="1" ClassId="{Binding ID}" 
+                        Grid.ColumnSpan="1" 
+                        Grid.Row="1" 
+                        Clicked="UpdateScore" 
+                        BackgroundColor="#ff8400" 
+                        HeightRequest="100"
+                        Margin="0,0,0,0" 
+                        CornerRadius="9"/>
+                    <ImageButton 
+                        x:Name="plus" 
+                        Source="plus_icon.png"  
+                        Grid.Column="3" 
+                        ClassId="{Binding ID}" 
+                        Grid.ColumnSpan="1" 
+                        Grid.Row="1" 
+                        Clicked="UpdateScore" 
+                        BackgroundColor="#ff8400" 
+                        HeightRequest="100"
+                        Margin="0,0,0,0" 
+                        CornerRadius="10"/>
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
