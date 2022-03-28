@@ -16,6 +16,8 @@
                     Value="{StaticResource SecondaryColor}" />
             <Setter Property="Shell.TabBarUnselectedColor"
                     Value="#95FFFFFF"/>
+            <Setter Property="Shell.BackgroundImageSource"
+                    Value="dice_roll.png"/>
         </Style>
         <Style TargetType="TabBar"
                BasedOn="{StaticResource BaseStyle}" />
@@ -24,16 +26,19 @@
     <!-- Display a bottom tab bar containing two tabs -->
     <TabBar>
         <ShellContent Title="Players"
-                      Icon="icon_feed.png"
+                      Icon=""
                       ContentTemplate="{DataTemplate views:PlayersPage}" />
-        <ShellContent Title="Game Setup"
-                      Icon="icon_about.png"
+        <ShellContent Title="Games"
+                      Icon=""
                       ContentTemplate="{DataTemplate views:GameSetupPage}" />
-        <ShellContent Title="Dice"
-                      Icon="icon_dice.png"
+        <ShellContent Title="Dice Roll"
+                      Icon=""
                       ContentTemplate="{DataTemplate views:DicePage}" />
+        <ShellContent Title="Timers"
+                      Icon=""
+                      ContentTemplate="{DataTemplate views:Timers}" />
         <ShellContent Title="About"
-                      Icon="icon_about.png"
+                      Icon=""
                       ContentTemplate="{DataTemplate views:AboutPage}" />
     </TabBar>
 </Shell>

@@ -15,7 +15,7 @@
         <Color x:Key="SecondaryColor">#00ffb3</Color>
         <Color x:Key="TertiaryColor">#66a9ba</Color>
         <Color x:Key="PlayerNameColor">#ba118c</Color>
-        
+
 
         <!-- Implicit styles -->
         <Style TargetType="ContentPage"

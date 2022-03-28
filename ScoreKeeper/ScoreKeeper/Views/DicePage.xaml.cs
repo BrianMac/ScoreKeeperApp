@@ -251,7 +251,6 @@ namespace ScoreKeeper.Views
             ResultsLastTotal.IsVisible = false;
         }
 
-        //Todo replace speaker characters with images that match the style of app design
         public void ToggleSound(object sender, EventArgs e)
         {
             rollSoundEnabled = !rollSoundEnabled;
