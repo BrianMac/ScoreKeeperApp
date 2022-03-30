@@ -2,12 +2,100 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ScoreKeeper.Views.Timers"
-             Title="Timers"
-             BackgroundColor="#3e1b5e">
+             Title="Timer"
+             BackgroundColor="#333951">
     <StackLayout 
         Grid.Row="1"
-        Margin="{StaticResource PageMargin}"
+        Margin="0"
         Spacing="20" >
-        
+        <Grid Padding="0,20,0,0"
+            RowDefinitions="Auto,Auto"
+            ColumnDefinitions="Auto"
+            HorizontalOptions="CenterAndExpand">
+            <Image 
+            x:Name="sand" 
+            Grid.Row="0"
+            Grid.Column="0"
+            Source="sand.png"            
+            Margin="0,0,0,0"
+            HeightRequest="400"
+            HorizontalOptions="Center"
+            VerticalOptions="Start" />
+            <Image 
+            x:Name="sand_b" 
+            Grid.Row="0"
+            Grid.Column="0"
+            Source="sand.png"            
+            Margin="0,0,0,0"
+            HeightRequest="400"
+            HorizontalOptions="Center"
+            VerticalOptions="Start" />
+            <Image 
+            x:Name="mask" 
+            Grid.Row="0"
+            Grid.Column="0"
+            Source="timer_mask.png"            
+            Margin="0,0,0,0"
+            HeightRequest="400"
+            HorizontalOptions="Center"
+            VerticalOptions="Start" />
+            <Image 
+            x:Name="sand_c" 
+            Grid.Row="0"
+            Grid.Column="0"
+            Source="sand.png"            
+            Margin="0,0,0,0"
+            HeightRequest="400"
+            HorizontalOptions="Center"
+            VerticalOptions="Start" />
+            <Image 
+            x:Name="bottom_sand" 
+            Grid.Row="0"
+            Grid.Column="0"
+            Source="bottom_sand.png"            
+            Margin="0,0,0,0"
+            HeightRequest="400"
+            HorizontalOptions="Center"
+            VerticalOptions="Start" />
+            <Image 
+            x:Name="top_sand" 
+            Grid.Row="0"
+            Grid.Column="0"
+            Source="top_sand.png" 
+            Margin="0,10,0,0"
+            HeightRequest="400"
+            HorizontalOptions="Center"
+            VerticalOptions="Start" />
+            <Path x:Name="shapey" Data="M0,0V246.12H246.12V0H0ZM123.06,163.76c-22.48,0-40.7-18.22-40.7-40.7s18.22-40.7,40.7-40.7,40.7,18.22,40.7,40.7-18.22,40.7-40.7,40.7Z" 
+            Fill="DarkMagenta"
+            Grid.Row="0"
+            Grid.Column="0"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" />
+            <Image 
+            x:Name="foreground" 
+            Grid.Row="0"
+            Grid.Column="0"
+            Source="timer_foreground.png"            
+            Margin="0,0,0,0"
+            HeightRequest="400"
+            HorizontalOptions="Center"
+            VerticalOptions="Start" />
+            <Button 
+            x:Name="StartTimer" 
+            Opacity="1" 
+            Text="Start" 
+            FontSize="13" 
+            Padding="0" 
+            Button.TextColor="White" 
+            BackgroundColor="#0072b1" 
+            Margin="0,0,0,0" 
+            Clicked="StartGameTimer" 
+            Grid.Row="1" 
+            Grid.Column="0" 
+            VerticalOptions="End" 
+            HorizontalOptions="Fill" />
+        </Grid>
+
     </StackLayout>
 </ContentPage>
