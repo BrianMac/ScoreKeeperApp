@@ -2,31 +2,38 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ScoreKeeper.Views.Timers"
+             xmlns:local="clr-namespace:ScoreKeeper.Views"
              Title="Timer"
              BackgroundColor="#333951">
+    <!--xmlns:behavior="http://xamarin.com/schemas/2020/toolkit"-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            x:Name="timeremaining" 
+            Text=""  />
+    </ContentPage.ToolbarItems>
     <StackLayout 
-        Grid.Row="1"
         Margin="0"
-        Spacing="20" >
-        <Grid Padding="0,20,0,0"
-            RowDefinitions="Auto,Auto"
-            ColumnDefinitions="Auto"
+        Spacing="20" HorizontalOptions="CenterAndExpand">
+        <Grid Padding="0,10,0,0"
+            RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+            ColumnDefinitions="*,*"
             HorizontalOptions="CenterAndExpand">
             <Image 
-            x:Name="sand" 
             Grid.Row="0"
             Grid.Column="0"
-            Source="sand.png"            
-            Margin="0,0,0,0"
+            Grid.ColumnSpan="2"
+            Source="tmr_bg.png"            
+            Margin="0"
             HeightRequest="400"
             HorizontalOptions="Center"
             VerticalOptions="Start" />
             <Image 
-            x:Name="sand_b" 
+            x:Name="sand_top" 
             Grid.Row="0"
             Grid.Column="0"
-            Source="sand.png"            
-            Margin="0,0,0,0"
+            Grid.ColumnSpan="2"
+            Source="tmr_sand.png"            
+            Margin="0"
             HeightRequest="400"
             HorizontalOptions="Center"
             VerticalOptions="Start" />
@@ -34,17 +41,29 @@
             x:Name="mask" 
             Grid.Row="0"
             Grid.Column="0"
-            Source="timer_mask.png"            
-            Margin="0,0,0,0"
+            Grid.ColumnSpan="2"
+            Source="tmr_mask.png"            
+            Margin="0"
             HeightRequest="400"
             HorizontalOptions="Center"
             VerticalOptions="Start" />
             <Image 
-            x:Name="sand_c" 
+            x:Name="sand_btm" 
             Grid.Row="0"
             Grid.Column="0"
-            Source="sand.png"            
-            Margin="0,0,0,0"
+            Grid.ColumnSpan="2"
+            Source="tmr_sand.png"            
+            Margin="0"
+            HeightRequest="400"
+            HorizontalOptions="Center"
+            VerticalOptions="Start" />
+            <Image 
+            x:Name="sand_fall" 
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Source="tmr_sand_fall.png"            
+            Margin="0"
             HeightRequest="400"
             HorizontalOptions="Center"
             VerticalOptions="Start" />
@@ -52,8 +71,9 @@
             x:Name="bottom_sand" 
             Grid.Row="0"
             Grid.Column="0"
-            Source="bottom_sand.png"            
-            Margin="0,0,0,0"
+            Grid.ColumnSpan="2"
+            Source="tmr_btm_sand.png"            
+            Margin="0,50,0,0"
             HeightRequest="400"
             HorizontalOptions="Center"
             VerticalOptions="Start" />
@@ -61,41 +81,243 @@
             x:Name="top_sand" 
             Grid.Row="0"
             Grid.Column="0"
-            Source="top_sand.png" 
-            Margin="0,10,0,0"
+            Grid.ColumnSpan="2"
+            Source="tmr_top_sand.png" 
+            Margin="0,0,0,0"
             HeightRequest="400"
             HorizontalOptions="Center"
-            VerticalOptions="Start" />
+            VerticalOptions="Start"
+                Opacity="1"/>
             <Path x:Name="shapey" Data="M0,0V246.12H246.12V0H0ZM123.06,163.76c-22.48,0-40.7-18.22-40.7-40.7s18.22-40.7,40.7-40.7,40.7,18.22,40.7,40.7-18.22,40.7-40.7,40.7Z" 
             Fill="DarkMagenta"
             Grid.Row="0"
+                  Margin="3.5,-43,0,0"
             Grid.Column="0"
+            Grid.ColumnSpan="2"
             HorizontalOptions="Center"
             VerticalOptions="Center" />
             <Image 
-            x:Name="foreground" 
             Grid.Row="0"
             Grid.Column="0"
-            Source="timer_foreground.png"            
+            Grid.ColumnSpan="2"
+            Source="tmr_fg.png"            
             Margin="0,0,0,0"
             HeightRequest="400"
             HorizontalOptions="Center"
             VerticalOptions="Start" />
-            <Button 
-            x:Name="StartTimer" 
-            Opacity="1" 
-            Text="Start" 
-            FontSize="13" 
-            Padding="0" 
-            Button.TextColor="White" 
-            BackgroundColor="#0072b1" 
-            Margin="0,0,0,0" 
-            Clicked="StartGameTimer" 
-            Grid.Row="1" 
-            Grid.Column="0" 
-            VerticalOptions="End" 
-            HorizontalOptions="Fill" />
+            <!--<Entry 
+            Keyboard="Numeric" 
+            x:Name="timer_entry"  
+            Placeholder="HH:MM:SS" 
+            Grid.Row="3" 
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            ClearButtonVisibility="WhileEditing"
+            Completed="timer_entry_Completed"
+            FlowDirection="RightToLeft"
+            BackgroundColor="#ad5cad" 
+            Margin="0" 
+            VerticalOptions="Center" 
+            HorizontalOptions="Fill" >
+                <Entry.Behaviors>
+                    <behavior:MaskedBehavior Mask="XX:XX:XX" />
+                </Entry.Behaviors>
+            </Entry>-->
+            <Grid
+            ColumnDefinitions="*,*"
+            RowDefinitions="Auto,Auto"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+                Margin="20,0,20,10"
+                HorizontalOptions="Fill"
+                VerticalOptions="End">
+                <!--"#6959c9" -->
+                <Button
+                x:Name="btn30sec"
+                ClassId="30sec"
+                Text="30 Sec." 
+                FontSize="13" 
+                Button.TextColor="White" 
+                BackgroundColor="#483d8b" 
+                Grid.Row="0" 
+                Grid.Column="0" 
+                 Clicked="SetTimeRemaining"/>
+                <Button 
+                x:Name="btn1min"
+                ClassId="1min"
+                Text="1 Min." 
+                FontSize="13" 
+                Button.TextColor="White" 
+                BackgroundColor="#483d8b" 
+                Grid.Row="0" 
+                Grid.Column="1"
+                Clicked="SetTimeRemaining"/>
+                <Button 
+                x:Name="btn5min"
+                ClassId="5min"
+                Text="5 Min." 
+                FontSize="13" 
+                Button.TextColor="White" 
+                BackgroundColor="#483d8b" 
+                Grid.Row="1" 
+                Grid.Column="0" 
+                Clicked="SetTimeRemaining"/>
+                <Button 
+                x:Name="btn10min"
+                ClassId="10min"
+                Text="10 Min." 
+                FontSize="13" 
+                Button.TextColor="White" 
+                BackgroundColor="#483d8b" 
+                Grid.Row="1" 
+                Grid.Column="1" 
+                Clicked="SetTimeRemaining"/>
+            </Grid>
+            <Grid
+            ColumnDefinitions="*,*,Auto"
+            RowDefinitions="Auto,Auto"
+            Grid.Row="2" 
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+                HorizontalOptions="Fill"
+                VerticalOptions="Center">
+                <Frame x:Name="selected_frame"
+            HasShadow="False"
+            CornerRadius="4" 
+            Grid.Row="0" 
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="20,5,0,0"
+                       IsVisible="false">
+                    <Frame.Background >
+                        <LinearGradientBrush 
+                    StartPoint="1,0" 
+                    EndPoint="0,1" >
+                            <GradientStop 
+                        Color="#6959c9" 
+                        Offset="1.0" />
+                            <GradientStop
+                        Color="#6959c9" 
+                        Offset="1.0" />
+                        </LinearGradientBrush >
+                    </Frame.Background>
+                </Frame>
+                <Frame x:Name="default_frame"
+            HasShadow="False"
+            CornerRadius="4" 
+            Grid.Row="0" 
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="20,5,0,0" 
+                       IsVisible="true">
+                    <Frame.Background >
+                        <LinearGradientBrush 
+                    StartPoint="1,0" 
+                    EndPoint="0,1" >
+                            <GradientStop 
+                        Color="#483d8b" 
+                        Offset="1.0" />
+                            <GradientStop
+                        Color="#483d8b" 
+                        Offset="1.0" />
+                        </LinearGradientBrush >
+                    </Frame.Background>
+                </Frame>
+                <Slider x:Name="time_slider"
+            Grid.Row="0" 
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            ValueChanged="SliderValueChanged"
+                Margin="20,5,0,0" />
+                <Image  
+            Grid.Row="0" 
+            Grid.Column="2"
+            Grid.ColumnSpan="1"
+            Grid.RowSpan="2"
+            Margin="0,5,20,0"
+            Source="clock_bg.png"            
+            HeightRequest="75"
+            HorizontalOptions="Center"
+            VerticalOptions="Start" />
+                <Image 
+            x:Name="clock_minutes" 
+            Grid.Row="0" 
+            Grid.Column="2"
+            Grid.ColumnSpan="1"
+            Grid.RowSpan="2"
+            Margin="0,5,20,0"
+            Source="clock_minute.png"
+            HeightRequest="75"
+            HorizontalOptions="Center"
+            VerticalOptions="Start" />
+                <Image 
+            x:Name="clock_seconds" 
+            Grid.Row="0" 
+            Grid.Column="2"
+            Grid.ColumnSpan="1"
+            Grid.RowSpan="2"
+            Margin="0,5,20,0"
+            Source="clock_second.png"
+            HeightRequest="75"
+            HorizontalOptions="Center"
+            VerticalOptions="Start" />
+                <Label
+                    
+                x:Name="time_remain_label"
+                Grid.Row="1" 
+                Grid.Column="2"
+                Grid.ColumnSpan="1"
+                Text=""
+                FontSize="14" 
+                Opacity="1" 
+                TextColor="#FFFFFF"
+                Margin="0,0,20,5" 
+                VerticalOptions="End" 
+                HorizontalOptions="Center"/>
+                <Button 
+                x:Name="CancelTimerBtn" 
+                Opacity="1" 
+                Text="Cancel Timer" 
+                FontSize="13" 
+                Padding="0" 
+                Button.TextColor="White" 
+                BackgroundColor="#0072b1" 
+                Margin="20,0,0,0" 
+                Clicked="CancelTimerBtn_Clicked" 
+                Grid.Row="1" 
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                VerticalOptions="Start" 
+                HorizontalOptions="Fill"
+                IsEnabled="False"
+                IsVisible="False"/>
+                <!--"#0295e6" -->
+                <Button 
+                x:Name="StartTimerBtn" 
+                Opacity="1" 
+                Text="Start Timer" 
+                FontSize="13" 
+                Padding="0" 
+                Button.TextColor="#ebebeb" 
+                BackgroundColor="#005482" 
+                Margin="20,0,0,0" 
+                Clicked="StartTimerBtn_Clicked" 
+                Grid.Row="1" 
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                VerticalOptions="Start" 
+                HorizontalOptions="Fill" 
+                IsEnabled="True"
+                IsVisible="True"/>
+            </Grid>
         </Grid>
-
+        <!--    <Grid Padding="10"
+                RowDefinitions="Auto"
+                HeightRequest="75"
+                ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
+                HorizontalOptions="CenterAndExpand" 
+                ColumnSpacing="10">
+                </Grid> -->
     </StackLayout>
 </ContentPage>
